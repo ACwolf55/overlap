@@ -1,15 +1,9 @@
 import React from 'react'
 
-export const MemberHome = () => {
-
-
+const MemberHome = () => {
   return (
-    <div>
-
-
-
-        
-    </div>
+    <div>MemberHome</div>
   )
-
 }
+
+export default MemberHome

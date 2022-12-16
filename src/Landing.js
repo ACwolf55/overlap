@@ -122,7 +122,8 @@ export const Landing = () => {
 
       <div className='reg-form'>
       <h4>Create an account</h4>
-      <button onClick={navigate('/vendor-reg')}>Create an account</button>
+      <button onClick={navigate('/member-reg')}>Create an account [member]</button>
+      <button onClick={navigate('/vendor-reg')}>Create an account [vendor] </button>
 
 
 
