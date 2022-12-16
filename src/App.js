@@ -1,8 +1,9 @@
 import './App.css';
 import {Route,Routes} from 'react-router-dom'
 import { Profile } from './Profile';
-import { VendorRegistration } from './VendorRegistration';
 import { Landing } from './Landing';
+import { VendorRegistration } from './VendorRegistration';
+import { VendorHome } from './VendorHome';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     <Route path= '/' element={ <Landing/>} />
     <Route path ='/profile' element={ <Profile/>} />
     <Route path ='/vendor-reg' element={ <VendorRegistration/>} />
+    <Route path ='/vendor-home' element={ <VendorHome/>} />
 
     </Routes>
 

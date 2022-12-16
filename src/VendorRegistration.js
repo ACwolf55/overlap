@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Header } from './Header'
 import { Nav } from './Nav'
 import axios from 'axios'
 
 export const VendorRegistration = () => {
-
+  const navigate = useNavigate()
+ 
 
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
@@ -49,7 +51,7 @@ export const VendorRegistration = () => {
              console.log(res.data)
              sessionStorage.setItem("email", res.data.email);
              sessionStorage.setItem("id", res.data.id);
-             alert('Registration Complete!, you can now login')
+             navigate('/vendor-home')
            }).catch((err)=> alert(''))
          } else {
            alert("You have entered an invalid email address!")

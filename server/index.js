@@ -40,9 +40,7 @@ app.post('/registerVendor', async(req,res)=>{
     console.log(req.body.newVendor)
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(newVendor.password, salt);
-
-    newVendor.password = {hash}
-
+    newVendor.password = hash
     try {
         await client.connect()
         const prevVendor = await client.db('quick-quotes').collection('vendors').findOne( {email:newVendor.email} )
