@@ -53,8 +53,8 @@ export const Landing = () => {
             sessionStorage.setItem("id", res.data.id);
 
 
-            navigate('/Home')
-        }).catch((err)=> alert('Dont recognize this username or password'))}
+            navigate('/member-home')
+        }).catch((err)=> alert(err.response.request.response))}
     }
 
 

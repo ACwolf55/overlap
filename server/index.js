@@ -49,10 +49,9 @@ app.post('/registerVendor', async(req,res)=>{
           return res.status(409).send('email already registered')
         }else{
         await client.db('quick-quotes').collection('vendors').insertOne(newVendor)
-        const registeredVendor = await client.db('quick-quotes').collection('members').findOne( {email:newMember.email} )
-        console.log('data' + registeredVendor)
-        console.log(registeredVendor)
-        return res.send(registeredVendor)
+        const registeredVendor = await client.db('quick-quotes').collection('members').findOne( {email:newVendor.email} )
+        
+        return res.send(newVendor.email)
         }
       } catch (e){
           console.error(e)
@@ -76,8 +75,8 @@ app.post('/registerMember', async(req,res)=>{
       }else{
      await client.db('quick-quotes').collection('members').insertOne(newMember)
       const registeredMember = await client.db('quick-quotes').collection('members').findOne( {email:newMember.email} )
-      console.log('data' + registeredMember)
-      return res.send(registeredMember)
+    
+      return res.send(newMember.email)
       }
     } catch (e){
         console.error(e)
@@ -93,7 +92,7 @@ app.post('/login', async(req,res)=>{
       await client.connect()
 
     //   const user = await client.db('quick-quotes').collection('users').findOne() 
-      const user = await client.db('quick-quotes').collection('users').findOne( {email:email} )
+      const user = await client.db('quick-quotes').collection('members').findOne( {email:email} )
     //   const user = await cursor.toArray()
     //   user = user[0]
         if(!user){

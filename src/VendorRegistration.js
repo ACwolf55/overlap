@@ -58,8 +58,8 @@ export const VendorRegistration = () => {
 
            axios.post('/registerVendor',{newVendor}).then((res)=>{
              console.log(res.data)
-             sessionStorage.setItem("email", res.data.registeredVendor.email);
-             sessionStorage.setItem("id", res.data.registeredVendor.id);
+             sessionStorage.setItem("email", res.data);
+            //  sessionStorage.setItem("id", res.data.registeredVendor.id);
              navigate('/vendor-home')
            }).catch((err)=> alert(''))
          } else {

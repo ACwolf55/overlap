@@ -56,8 +56,8 @@ const MemberRegistration = () => {
 
            axios.post('/registerMember',{newMember}).then((res)=>{
              console.log(res.data)
-             sessionStorage.setItem("email", res.data.registeredMember.email);
-             sessionStorage.setItem("id", res.data.registeredMember.id);
+             sessionStorage.setItem("email", res.data);
+            //  sessionStorage.setItem("id", res.data.registeredMember.id);
              navigate('/member-home')
            }).catch((err)=> alert(''))
          } else {
