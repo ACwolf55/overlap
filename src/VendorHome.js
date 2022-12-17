@@ -4,7 +4,7 @@ import { Nav } from './Nav'
 
 export const VendorHome = () => {
 
-
+  const vendorEmail = sessionStorage.getItem("email");
 
 
     
@@ -14,7 +14,8 @@ export const VendorHome = () => {
       <Header/>
       <Nav />
         
-        VendorHome
+        <h3>VendorHome</h3>
+        <h3>Welcome {vendorEmail}</h3>
         
         </div>
   )

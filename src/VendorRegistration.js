@@ -1,11 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 import { Header } from './Header'
 import { Nav } from './Nav'
 import axios from 'axios'
 
 export const VendorRegistration = () => {
   const navigate = useNavigate()
+
+  const [visible,setVisible] = useState(false)
  
 
   const [email,setEmail] = useState('')
@@ -17,6 +20,12 @@ export const VendorRegistration = () => {
   const [state,setState] = useState('')
   const [zip,setZip] = useState('')
   const [category,setCategory] = useState('')
+
+  const togglePass=(e)=>{
+    e.preventDefault()
+    setVisible(prev=>!prev)
+  }
+
 
   useEffect(() => {
     
@@ -49,8 +58,8 @@ export const VendorRegistration = () => {
 
            axios.post('/registerVendor',{newVendor}).then((res)=>{
              console.log(res.data)
-             sessionStorage.setItem("email", res.data.email);
-             sessionStorage.setItem("id", res.data.id);
+             sessionStorage.setItem("email", res.data.registeredVendor.email);
+             sessionStorage.setItem("id", res.data.registeredVendor.id);
              navigate('/vendor-home')
            }).catch((err)=> alert(''))
          } else {
@@ -69,9 +78,22 @@ export const VendorRegistration = () => {
         <Nav/>
         <main>
         <div className='registration-form'>
-        <h4>Complete Registration</h4> 
+        <h4>Complete Vendor Registration</h4> 
         <input placeholder='Email' onChange={(e)=>setEmail(e.target.value)} className='reg-input'></input>
-        <input placeholder='password' onChange={(e)=>setPassword(e.target.value)} className='reg-input'></input>
+
+        <div className='password-wrapper'>
+          <input
+            type={visible ? "text" : "password" }
+            name="password"
+            placeholder="password"
+            className='reg-input'
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className='show-password-btn' onClick={togglePass}>
+            { visible ? <AiOutlineEye/> : <AiOutlineEyeInvisible /> }
+          </button>
+          </div>
+
         <input placeholder='Company Name' onChange={(e)=>setCompanyName(e.target.value)} className='reg-input'></input>
         <input placeholder='Phone #' onChange={(e)=>setPhone(e.target.value)}className='reg-input'></input>
         <input placeholder='Address' onChange={(e)=>setAddress(e.target.value)} className='reg-input'></input>

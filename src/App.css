@@ -1,9 +1,11 @@
 .App {
   text-align: center;
-    background-color: black;
+  background-color: black;
   color:white;
   border: 5px solid white;
+  position: relative;
   height: 100vh;
+  z-index: 1;
 
 }
 
@@ -15,6 +17,7 @@ header{
   justify-content: space-between;
   align-items: center;
   border: 1px solid rgb(76, 230, 4);
+  cursor: pointer;
 }
 
 h1{
@@ -42,7 +45,7 @@ nav{
 }
 
 .menu{
-  border: 1px solid white;
+  /* border: 1px solid white; */
   height: 80px;
   width: 80px;
   font-size: 15px;
@@ -52,10 +55,11 @@ nav{
   margin-top: 5px;
   height: 30px;
   width:30px;
+  margin-bottom: -10px;
 }
 
 .search{
-  border: 1px solid white;
+  /* border: 1px solid white; */
   font-size: 15px;
   height: 80px;
   width: 80px;
@@ -108,14 +112,14 @@ main{
 
 .password{
   border: 5px solid white;
-  width: 100px;
-  height: 14px;
+  width: 150px;
+  height: 15px;
 }
 
 .email{
   border: 5px solid white;
-  width: 100px;
-  height: 14px;
+  width: 150px;
+  height: 15px;
 }
 
 label{
@@ -152,7 +156,7 @@ label{
 .registration-form{
   background-color: rgb(211, 208, 208);
   width:600px;
-  height: 280px;
+  height: 300px;
   color:rgb(63, 63, 63);
   display: flex;
   flex-direction: column;
@@ -166,6 +170,8 @@ label{
 }
 
 .city-state-zip{
+  margin-bottom: 5px;
+  margin-top: 5px;
   display: flex;
   justify-content: center;
   align-items: center;

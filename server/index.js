@@ -48,7 +48,9 @@ app.post('/registerVendor', async(req,res)=>{
         if(prevVendor!==null){
           return res.status(409).send('email already registered')
         }else{
-        const registeredVendor = await client.db('quick-quotes').collection('vendors').insertOne(newVendor)
+        await client.db('quick-quotes').collection('vendors').insertOne(newVendor)
+        const registeredVendor = await client.db('quick-quotes').collection('members').findOne( {email:newMember.email} )
+        console.log('data' + registeredVendor)
         console.log(registeredVendor)
         return res.send(registeredVendor)
         }
@@ -57,10 +59,33 @@ app.post('/registerVendor', async(req,res)=>{
       } finally {
           await client.close()
       }
-    
-      
-   
 })
+
+app.post('/registerMember', async(req,res)=>{
+  let { newMember} = req.body;
+  console.log(req.body.newMember)
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(newMember.password, salt);
+  newMember.password = hash
+  try {
+      await client.connect()
+      const prevMember = await client.db('quick-quotes').collection('members').findOne( {email:newMember.email} )
+      console.log(prevMember)
+      if(prevMember!==null){
+        return res.status(409).send('email already registered')
+      }else{
+     await client.db('quick-quotes').collection('members').insertOne(newMember)
+      const registeredMember = await client.db('quick-quotes').collection('members').findOne( {email:newMember.email} )
+      console.log('data' + registeredMember)
+      return res.send(registeredMember)
+      }
+    } catch (e){
+        console.error(e)
+    } finally {
+        await client.close()
+    }
+})
+
 app.post('/login', async(req,res)=>{
     let { email, password } = req.body;
  

@@ -5,13 +5,15 @@ import { useNavigate } from 'react-router-dom'
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 import { Nav } from './Nav'
 import { Header } from './Header'
-import Module from './Module'
+import Modal from './Modal'
 
 export const Landing = () => {
 
     const navigate = useNavigate()
-    const [email,setEmail] = useState('')
-    const [password,setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+  
     const [visible,setVisible] = useState(false)
     const [PopUp,setPopUp] = useState(false)
 
@@ -55,26 +57,6 @@ export const Landing = () => {
         }).catch((err)=> alert('Dont recognize this username or password'))}
     }
 
-    const register =(e)=>{
-     e.preventDefault()
-     const test = validateEmail(email)
-     console.log(test)
-        if (email === "") {
-            alert("Please enter email");
-          } else if (password.length < 6) {
-            alert("Please enter password");
-          } else if (test){
-            setPopUp(true)
-            // axios.post('/register',{email,password}).then((res)=>{
-            //   console.log(res.data)
-            //   sessionStorage.setItem("email", res.data.email);
-            //   sessionStorage.setItem("id", res.data.id);
-             
-            // }).catch((err)=> alert(''))
-          } else {
-            alert("You have entered an invalid email address!")
-      }
-    }
 
   return (
     <div id='Landing'>
@@ -109,23 +91,22 @@ export const Landing = () => {
           </div>
         </label>
         <div className='log-reg-btns'>
-       <button onClick={login} style={{boxShadow:'black 1px 1px 2px', marginRight:'5px'}}>Login</button>
+       <button onClick={login} style={{boxShadow:'black 1px 1px 2px', marginRight:'5px',marginTop:'5px'}}>Login</button>
       
        </div>
 
-       <Module PopUp={PopUp} setPopUp={setPopUp}>
-        are you a vendor or member?
-       </Module>
+     
       </div>
 
       <p><i>or</i></p>
 
       <div className='reg-form'>
       <h4>Create an account</h4>
-      <button onClick={navigate('/member-reg')}>Create an account [member]</button>
-      <button onClick={navigate('/vendor-reg')}>Create an account [vendor] </button>
+      <button onClick={()=>setPopUp(true)}>Register</button>
 
-
+      <Modal open={PopUp} onClose={() => setPopUp(false)}>
+          
+        </Modal>
 
       </div>
         </div>
