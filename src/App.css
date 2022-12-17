@@ -30,9 +30,11 @@ h1{
 }
 
 #profile_logo{
-  border: 1px solid white;
-  height: 80px;
-  width: 80px;
+  /* border: 2px solid rgb(221, 255, 0); */
+  background-color: rgb(246, 232, 232);
+  height: 76px;
+  width: 76px;
+  margin-right: 3px;
 }
 
 nav{
