@@ -85,7 +85,7 @@ app.post('/registerMember', async(req,res)=>{
     }
 })
 
-app.post('/login', async(req,res)=>{
+app.post('/loginMember', async(req,res)=>{
     let { email, password } = req.body;
  
     try {
@@ -109,6 +109,32 @@ app.post('/login', async(req,res)=>{
     } finally {
         await client.close()
     }
+})
+
+app.post('/loginVendor', async(req,res)=>{
+  let { email, password } = req.body;
+
+  try {
+    await client.connect()
+
+  //   const user = await client.db('quick-quotes').collection('users').findOne() 
+    const user = await client.db('quick-quotes').collection('vendors').findOne( {email:email} )
+  //   const user = await cursor.toArray()
+  //   user = user[0]
+      if(!user){
+        return res.status(401).send('User not found')
+      }
+      let isAuth = bcrypt.compareSync(password, user.password);
+      if (!isAuth) {
+        return res.status(401).send("incorrect password");
+      }
+      return res.status(200).send({email:user.email,id:user._id});
+    }
+    catch (e){
+      console.error(e)
+  } finally {
+      await client.close()
+  }
 })
 
 

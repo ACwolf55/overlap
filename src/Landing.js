@@ -16,6 +16,7 @@ export const Landing = () => {
   
     const [visible,setVisible] = useState(false)
     const [PopUp,setPopUp] = useState(false)
+    const [isMember,setIsMember] = useState(true)
 
     useEffect(()=>{
       // let email = sessionStorage.getItem("email");
@@ -40,14 +41,31 @@ export const Landing = () => {
         );
     };
  
-    const login =(e)=>{
+    const loginMember =(e)=>{
       e.preventDefault()
         if (email === "") {
             alert("Please enter email");
           } else if (password.length < 6) {
             alert("password must be atleast 6 characters");
           } else {
-        axios.post('/login',{email,password}).then((res)=>{
+        axios.post('/loginMember',{email,password}).then((res)=>{
+          console.log(res.data)
+            sessionStorage.setItem("email", res.data.email);
+            sessionStorage.setItem("id", res.data.id);
+
+
+            navigate('/member-home')
+        }).catch((err)=> alert(err.response.request.response))}
+    }
+
+    const loginVendor =(e)=>{
+      e.preventDefault()
+        if (email === "") {
+            alert("Please enter email");
+          } else if (password.length < 6) {
+            alert("password must be atleast 6 characters");
+          } else {
+        axios.post('/loginVendor',{email,password}).then((res)=>{
           console.log(res.data)
             sessionStorage.setItem("email", res.data.email);
             sessionStorage.setItem("id", res.data.id);
@@ -66,8 +84,16 @@ export const Landing = () => {
 
         <div className='auth-box'>
           <div className='login-form'>
-        <h4>Log in</h4>
-        <label>
+        {/* <h4>Log in</h4> */}
+        {isMember 
+        ? 
+        <div className='member-tab'>
+          <div className='tabs'>
+          <h4 className='member-click' onClick={()=>setIsMember(true)}>Member</h4>
+          <div className='tab-divider'></div>
+            <h4 className='vendor-click' onClick={()=>setIsMember(false)}>Vendor</h4>
+          </div>
+  <label>
           <input
             type="email"
             name="email"
@@ -91,14 +117,52 @@ export const Landing = () => {
           </div>
         </label>
         <div className='log-reg-btns'>
-       <button onClick={login} style={{boxShadow:'black 1px 1px 2px', marginRight:'5px',marginTop:'5px'}}>Login</button>
+       <button onClick={loginMember} style={{boxShadow:'black 1px 1px 2px', marginRight:'5px',marginTop:'5px'}}>Login</button>
       
        </div>
+        </div>
+        :
+        <div className='vendor-tab'>
+            <div className='tabs'>
+            <h4 className='member-click' onClick={()=>setIsMember(true)}>Member</h4>
+            <div className='tab-divider'></div>
+            <h4 className='vendor-click' onClick={()=>setIsMember(false)}>Vendor</h4>
+          </div>
+  <label>
+          <input
+            type="email"
+            name="email"
+            placeholder="email"
+            className='email'
+            onChange={(e) => setEmail(e.target.value)}
+            style={{boxShadow:'black 0px 1px 2px'}}
+          />
+          <div className='password-wrapper'>
+          <input
+            type={visible ? "text" : "password" }
+            name="password"
+            placeholder="password"
+            className='password'
+            onChange={(e) => setPassword(e.target.value)}
+            style={{boxShadow:'black 0px 1px 2px'}}
+          />
+          <button className='show-password-btn' onClick={togglePass}>
+            { visible ? <AiOutlineEye/> : <AiOutlineEyeInvisible /> }
+          </button>
+          </div>
+        </label>
+        <div className='log-reg-btns'>
+       <button onClick={loginVendor} style={{boxShadow:'black 1px 1px 2px', marginRight:'5px',marginTop:'5px'}}>Login</button>
+      
+       </div>
+        </div>
+        }
+      
 
      
       </div>
 
-      <p><i>or</i></p>
+      <p styles={{marginTop:"-100px",marginBottom:"-100px"}}><i>or</i></p>
 
       <div className='reg-form'>
       <h4>Create an account</h4>
