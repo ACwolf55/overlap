@@ -162,7 +162,7 @@ export const Landing = () => {
      
       </div>
 
-      <p styles={{marginTop:"-100px",marginBottom:"-100px"}}><i>or</i></p>
+      <h3 className='or'>or</h3>
 
       <div className='reg-form'>
       <h4>Create an account</h4>

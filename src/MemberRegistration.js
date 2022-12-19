@@ -59,7 +59,7 @@ const MemberRegistration = () => {
              sessionStorage.setItem("email", res.data);
             //  sessionStorage.setItem("id", res.data.registeredMember.id);
              navigate('/member-home')
-           }).catch((err)=> alert(''))
+           }).catch((err)=> alert(err.response.request.response))
          } else {
            alert("You have entered an invalid email address!")
      }

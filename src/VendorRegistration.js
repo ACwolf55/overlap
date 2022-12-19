@@ -61,7 +61,7 @@ export const VendorRegistration = () => {
              sessionStorage.setItem("email", res.data);
             //  sessionStorage.setItem("id", res.data.registeredVendor.id);
              navigate('/vendor-home')
-           }).catch((err)=> alert(''))
+           }).catch((err)=> alert(err.response.request.response))
          } else {
            alert("You have entered an invalid email address!")
      }

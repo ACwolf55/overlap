@@ -16,7 +16,7 @@ header{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgb(76, 230, 4);
+  border: 1px solid aqua;
   cursor: pointer;
 }
 
@@ -43,7 +43,7 @@ nav{
   justify-content: space-between;
   height: 80px;
   width: 100vw;
-  border: 1px solid red;
+  border: 1px solid aquamarine;
 }
 
 .menu{
@@ -82,7 +82,7 @@ main{
 .auth-box{
   background-color: rgb(211, 208, 208);
   width:500px;
-  height: 320px;
+  height: 340px;
   color:rgb(63, 63, 63);
   display: flex;
   flex-direction: column;
@@ -91,7 +91,7 @@ main{
 }
 
 .login-form{
-padding-top: 50px;
+padding-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -108,7 +108,10 @@ padding-top: 50px;
   align-items: center;
   height: 50px;
   margin-bottom: 20px;
+}
 
+.or{
+  margin-top: -5px;
 }
 
 .member-tab{
@@ -142,6 +145,7 @@ background-color: aqua;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor:pointer;
 }
 
 .vendor-click{
@@ -151,7 +155,7 @@ background-color: aqua;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  cursor:pointer;
 }
 
 
@@ -159,10 +163,12 @@ background-color: aqua;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 200px;
+  height: 150px;
   width:200px;
   border: 1px solid darkgray;
   font-size: 15px;
+  margin-top: -20px;
+  
 }
 
 .password{

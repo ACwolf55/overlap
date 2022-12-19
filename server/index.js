@@ -96,7 +96,7 @@ app.post('/loginMember', async(req,res)=>{
     //   const user = await cursor.toArray()
     //   user = user[0]
         if(!user){
-          return res.status(401).send('User not found')
+          return res.status(401).send('Member not found')
         }
         let isAuth = bcrypt.compareSync(password, user.password);
         if (!isAuth) {
@@ -122,7 +122,7 @@ app.post('/loginVendor', async(req,res)=>{
   //   const user = await cursor.toArray()
   //   user = user[0]
       if(!user){
-        return res.status(401).send('User not found')
+        return res.status(401).send('Vendor not found')
       }
       let isAuth = bcrypt.compareSync(password, user.password);
       if (!isAuth) {
