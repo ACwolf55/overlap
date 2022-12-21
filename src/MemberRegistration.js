@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
 import { Header } from './Header'
 import { Nav } from './Nav'
+import SelectUSState from 'react-select-us-states'
 import axios from 'axios'
 
 
@@ -23,7 +24,9 @@ const MemberRegistration = () => {
     e.preventDefault()
     setVisible(prev=>!prev)
   }
-
+  function setNewValue(newValue) {
+        setState(newValue)
+      }
 
   useEffect(() => {
     
@@ -92,7 +95,7 @@ const MemberRegistration = () => {
         
         <div className='city-state-zip'>
         <input placeholder='city' onChange={(e)=>setCity(e.target.value)} classname='addr-input'></input>
-        <input placeholder='state' onChange={(e)=>setState(e.target.value)} classname='addr-input'></input>
+        <SelectUSState classname='addr-input' onChange={setNewValue}/>
         <input placeholder='zip' onChange={(e)=>setZip(e.target.value)} classname='addr-input'></input>
         </div>
 

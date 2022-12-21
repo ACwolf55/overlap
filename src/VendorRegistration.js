@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
+import SelectUSState from 'react-select-us-states'
 import { Header } from './Header'
 import { Nav } from './Nav'
 import axios from 'axios'
@@ -25,6 +26,11 @@ export const VendorRegistration = () => {
     e.preventDefault()
     setVisible(prev=>!prev)
   }
+
+  function setNewValue(newValue) {
+        setState(newValue)
+      }
+
 
 
   useEffect(() => {
@@ -99,7 +105,7 @@ export const VendorRegistration = () => {
         <input placeholder='Address' onChange={(e)=>setAddress(e.target.value)} className='reg-input'></input>
         <div className='city-state-zip'>
         <input placeholder='city' onChange={(e)=>setCity(e.target.value)} classname='addr-input'></input>
-        <input placeholder='state' onChange={(e)=>setState(e.target.value)} classname='addr-input'></input>
+        <SelectUSState classname='addr-input' onChange={setNewValue}/>
         <input placeholder='zip' onChange={(e)=>setZip(e.target.value)} classname='addr-input'></input>
         </div>
 
